@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ScrollView, Text, VStack } from "native-base";
 import Heading from "../../components/heading";
+import Members from "./components/members";
 
 const steps = {
   MEMBERS: 0,
@@ -10,6 +11,39 @@ const steps = {
 
 function HomeScreen() {
   const [step, setStep] = useState(steps.MEMBERS);
+  const [members, setMembers] = useState([]);
+
+  const onAddMember = useCallback(() => {
+    const _members = [...members];
+    _members.push({
+      id: String(new Date().getTime()),
+      name: "",
+    });
+    setMembers(_members);
+  }, [members]);
+
+  const onRemoveMember = useCallback(
+    (id) => {
+      let _members = [...members];
+      _members = _members.filter((_member) => _member.id !== id);
+      setMembers(_members);
+    },
+    [members],
+  );
+
+  const onUpdateMember = useCallback(
+    (id, name) => {
+      let _members = [...members];
+      _members = _members.map((_member) => {
+        if (_member.id === id) {
+          _member.name = name;
+        }
+        return _member;
+      });
+      setMembers(_members);
+    },
+    [members],
+  );
 
   return (
     <ScrollView>
@@ -21,6 +55,14 @@ function HomeScreen() {
           label="Members"
           isOpen={step === steps.MEMBERS}
           onPress={() => setStep(steps.MEMBERS)}
+        />
+        <Members
+          visible={step === steps.MEMBERS}
+          members={members}
+          onAddMember={onAddMember}
+          onUpdateMember={onUpdateMember}
+          onRemoveMember={onRemoveMember}
+          onNext={() => setStep(steps.ORDERS)}
         />
         <Heading
           label="Orders"
