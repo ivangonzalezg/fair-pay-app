@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import {
   Checkbox,
   HStack,
+  Input,
   Pressable,
   ScrollView,
   Text,
   VStack,
 } from "native-base";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Card from "../../../../components/card";
 import styles from "./styles";
 import constants from "../../../../constants";
@@ -25,6 +27,7 @@ const Checkout = (props) => {
   const { members, orders, ...rest } = props;
   const [memberId, setMemberId] = useState("");
   const [includeTip, setIncludeTip] = useState(false);
+  const [tip, setTip] = useState("10");
 
   useEffect(() => {
     setIncludeTip(false);
@@ -50,9 +53,10 @@ const Checkout = (props) => {
     [memberOrders],
   );
 
-  const tip = useMemo(
-    () => Number((memberTotal * (includeTip ? 0.1 : 0)).toFixed(2)),
-    [includeTip, memberTotal],
+  const tipTotal = useMemo(
+    () =>
+      Number((memberTotal * (includeTip ? Number(tip) / 100 : 0)).toFixed(2)),
+    [memberTotal, includeTip, tip],
   );
 
   return (
@@ -68,7 +72,7 @@ const Checkout = (props) => {
         />
       </ScrollView>
       {member && (
-        <VStack>
+        <VStack paddingBottom={3}>
           <Text bold fontSize="md" marginBottom={3}>
             {member.name}'s bill
           </Text>
@@ -86,11 +90,11 @@ const Checkout = (props) => {
           </HStack>
           <HStack justifyContent="space-between">
             <Text>Tip</Text>
-            <Text bold>{formatToCurrency(tip)}</Text>
+            <Text bold>{formatToCurrency(tipTotal)}</Text>
           </HStack>
           <HStack justifyContent="space-between" marginBottom={5}>
             <Text>Total</Text>
-            <Text bold>{formatToCurrency(memberTotal + tip)}</Text>
+            <Text bold>{formatToCurrency(memberTotal + tipTotal)}</Text>
           </HStack>
           <Pressable onPress={() => setIncludeTip(!includeTip)}>
             <HStack space={1} alignItems="center">
@@ -103,9 +107,20 @@ const Checkout = (props) => {
               <Text>Include tip?</Text>
             </HStack>
           </Pressable>
+          {includeTip && (
+            <Input
+              size="md"
+              value={tip}
+              onChangeText={setTip}
+              placeholder="Tip"
+              keyboardType="number-pad"
+              rightElement={<MaterialCommunityIcons name="percent" size={20} />}
+              marginTop={2}
+              maxWidth="80px"
+            />
+          )}
         </VStack>
       )}
-      {/* {member && <Text>{JSON.stringify(memberOrders, null, 2)}</Text>} */}
     </Card>
   );
 };
