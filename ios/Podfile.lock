@@ -520,6 +520,8 @@ PODS:
     - React-perflogger (= 0.71.7)
   - RNCAsyncStorage (1.18.1):
     - React-Core
+  - RNCPicker (2.4.10):
+    - React-Core
   - RNFBAnalytics (17.4.3):
     - Firebase/Analytics (= 10.7.0)
     - React-Core
@@ -720,6 +722,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNFBAnalytics:
     :path: "../node_modules/@react-native-firebase/analytics"
   RNFBApp:
@@ -808,6 +812,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: c5c89f8f543842dd864b63ded1b0bbb9c9445328
   ReactCommon: 5307873a227ee34ddd3e7f2ec1086ebbfccc7618
   RNCAsyncStorage: b90b71f45b8b97be43bc4284e71a6af48ac9f547
+  RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
   RNFBAnalytics: e794cd8afc8d1b8fc450b193f51cdf7a7c26ea90
   RNFBApp: 922564a99c97a8cab366d5a918f9fecff6b563d5
   RNFBCrashlytics: fbad0177b4603cd964364e3206a158fe5b3862c8
