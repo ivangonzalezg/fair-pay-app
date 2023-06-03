@@ -5,10 +5,13 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Card from "../card";
 
 const Heading = (props) => {
-  const { label, isOpen, onPress } = props;
+  const { label, isOpen, onPress, disabled } = props;
 
   return (
-    <Pressable onPress={onPress}>
+    <Pressable
+      onPress={onPress}
+      isDisabled={disabled}
+      _disabled={{ opacity: 0.4 }}>
       <Card
         flexDirection="row"
         justifyContent="space-between"
@@ -29,6 +32,11 @@ Heading.propTypes = {
   label: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onPress: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+};
+
+Heading.defaultProps = {
+  disabled: false,
 };
 
 export default React.memo(Heading);

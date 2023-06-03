@@ -15,6 +15,7 @@ const Orders = (props) => {
     onUpdateOrder,
     onRemoveOrder,
     onNext,
+    nextDisabled,
     ...rest
   } = props;
 
@@ -59,7 +60,11 @@ const Orders = (props) => {
         <Button flex={1} onPress={onAddOrder} colorScheme="blue">
           Add order
         </Button>
-        <Button flex={1} onPress={onNext} colorScheme="green">
+        <Button
+          flex={1}
+          onPress={onNext}
+          colorScheme="green"
+          isDisabled={nextDisabled}>
           Next
         </Button>
       </HStack>
@@ -74,6 +79,7 @@ Orders.propTypes = {
   onUpdateOrder: PropTypes.func.isRequired,
   onRemoveOrder: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
+  nextDisabled: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Orders);

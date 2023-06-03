@@ -11,6 +11,7 @@ const Members = (props) => {
     onUpdateMember,
     onRemoveMember,
     onNext,
+    nextDisabled,
     ...rest
   } = props;
 
@@ -44,7 +45,11 @@ const Members = (props) => {
         <Button flex={1} onPress={onAddMember} colorScheme="blue">
           Add member
         </Button>
-        <Button flex={1} onPress={onNext} colorScheme="green">
+        <Button
+          flex={1}
+          onPress={onNext}
+          colorScheme="green"
+          isDisabled={nextDisabled}>
           Next
         </Button>
       </HStack>
@@ -58,6 +63,7 @@ Members.propTypes = {
   onUpdateMember: PropTypes.func.isRequired,
   onRemoveMember: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
+  nextDisabled: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Members);

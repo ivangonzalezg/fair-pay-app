@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { ScrollView, Text, VStack } from "native-base";
 import Heading from "../../components/heading";
 import Members from "./components/members";
@@ -84,6 +84,18 @@ function HomeScreen() {
     [orders],
   );
 
+  const disabledOrders = useMemo(
+    () => members.length === 0 || members.some((member) => !member.name),
+    [members],
+  );
+
+  const disabledCheckout = useMemo(
+    () =>
+      orders.length === 0 ||
+      orders.some((order) => !order.product || !order.member),
+    [orders],
+  );
+
   return (
     <ScrollView>
       <VStack safeArea paddingX={2} paddingY={2}>
@@ -102,11 +114,13 @@ function HomeScreen() {
           onUpdateMember={onUpdateMember}
           onRemoveMember={onRemoveMember}
           onNext={() => setStep(steps.ORDERS)}
+          nextDisabled={disabledOrders}
         />
         <Heading
           label="Orders"
           isOpen={step === steps.ORDERS}
           onPress={() => setStep(steps.ORDERS)}
+          disabled={disabledOrders}
         />
         <Orders
           visible={step === steps.ORDERS}
@@ -116,11 +130,13 @@ function HomeScreen() {
           onUpdateOrder={onUpdateOrder}
           onRemoveOrder={onRemoveOrder}
           onNext={() => setStep(steps.CHECKOUT)}
+          nextDisabled={disabledCheckout}
         />
         <Heading
           label="Checkout"
           isOpen={step === steps.CHECKOUT}
           onPress={() => setStep(steps.CHECKOUT)}
+          disabled={disabledCheckout}
         />
         <Checkout
           visible={step === steps.CHECKOUT}
