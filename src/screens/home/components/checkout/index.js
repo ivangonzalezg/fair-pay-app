@@ -114,7 +114,13 @@ const Checkout = (props) => {
               onChangeText={setTip}
               placeholder="Tip"
               keyboardType="number-pad"
-              rightElement={<MaterialCommunityIcons name="percent" size={20} />}
+              rightElement={
+                <MaterialCommunityIcons
+                  name="percent"
+                  size={20}
+                  color="black"
+                />
+              }
               marginTop={2}
               maxWidth="80px"
             />

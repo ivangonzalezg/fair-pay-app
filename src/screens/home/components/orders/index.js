@@ -50,7 +50,7 @@ const Orders = (props) => {
               alignItems="center"
               paddingX={1}
               onPress={() => onRemoveOrder(order.id)}>
-              <MaterialCommunityIcons name="delete" size={25} />
+              <MaterialCommunityIcons name="delete" size={25} color="black" />
             </Pressable>
           </HStack>
         )}

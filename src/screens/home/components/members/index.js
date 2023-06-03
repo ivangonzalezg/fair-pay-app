@@ -35,7 +35,7 @@ const Members = (props) => {
               alignItems="center"
               paddingX={1}
               onPress={() => onRemoveMember(member.id)}>
-              <MaterialCommunityIcons name="delete" size={25} />
+              <MaterialCommunityIcons name="delete" size={25} color="black" />
             </Pressable>
           </HStack>
         )}

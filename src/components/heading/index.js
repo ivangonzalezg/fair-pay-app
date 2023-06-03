@@ -22,6 +22,7 @@ const Heading = (props) => {
         <MaterialCommunityIcons
           name={isOpen ? "chevron-up" : "chevron-down"}
           size={30}
+          color="black"
         />
       </Card>
     </Pressable>

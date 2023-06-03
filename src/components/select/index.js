@@ -43,7 +43,7 @@ const Select = (props) => {
           <Text flex={1} color={label ? "black" : "gray.500"} numberOfLines={1}>
             {label || placeholder}
           </Text>
-          <MaterialCommunityIcons name="chevron-down" size={30} />
+          <MaterialCommunityIcons name="chevron-down" size={30} color="black" />
         </HStack>
       </RNPickerSelect>
     </Box>
