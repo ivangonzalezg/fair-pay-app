@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { ScrollView, Text, VStack } from "native-base";
+import { Button, ScrollView, Text, VStack } from "native-base";
 import Heading from "../../components/heading";
 import Members from "./components/members";
 import Orders from "./components/orders";
@@ -106,6 +106,12 @@ function HomeScreen() {
     [orders],
   );
 
+  const onReset = useCallback(() => {
+    setStep(steps.MEMBERS);
+    setMembers([]);
+    setOrders([]);
+  }, []);
+
   return (
     <ScrollView>
       <VStack safeArea paddingX={2} paddingY={2}>
@@ -153,6 +159,9 @@ function HomeScreen() {
           members={members}
           orders={orders}
         />
+        <Button flex={1} onPress={onReset} colorScheme="rose" marginTop={5}>
+          Reset
+        </Button>
       </VStack>
     </ScrollView>
   );
