@@ -1,11 +1,11 @@
 import * as React from "react";
 
-declare class LocationPickerType extends React.Component<
-  LocationPickerProps,
+declare class ProgressDialogType extends React.Component<
+  ProgressDialogProps,
   any
 > {}
 
-interface LocationPickerProps {
+interface ProgressDialogProps {
   visible: boolean;
   /**
    * The default value is "Loading".
@@ -13,5 +13,5 @@ interface LocationPickerProps {
   label?: string;
 }
 
-declare var LocationPicker: typeof LocationPickerType;
-export = LocationPicker;
+declare var ProgressDialog: typeof ProgressDialogType;
+export = ProgressDialog;
