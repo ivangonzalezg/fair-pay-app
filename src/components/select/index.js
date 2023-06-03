@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import RNPickerSelect from "react-native-picker-select";
 import { Box, HStack, Text } from "native-base";
@@ -12,6 +12,12 @@ const Select = (props) => {
     () => items?.find((item) => item.value === value)?.label,
     [items, value],
   );
+
+  useEffect(() => {
+    if (!label && value) {
+      onChange("");
+    }
+  }, [label, value, onChange]);
 
   return (
     <Box flex={1}>
