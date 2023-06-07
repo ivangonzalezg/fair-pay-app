@@ -1,3 +1,53 @@
+# FairPay App
+
+## Installation
+
+1. Clone the repository to your local machine:
+
+``` console
+git clone https://github.com/ivangonzalezg/fair-pay-app.git
+```
+
+2. Navigate to the project directory:
+
+``` console
+cd fair-pay-app
+```
+
+3. Install the dependencies:
+
+``` console
+yarn
+```
+
+4. Only for iOS
+
+``` console
+npx pod-install
+```
+
+
+## Running
+
+1. To run the app, in the project directory, run the following command:
+
+``` console
+yarn start
+```
+
+## Running on Android Emulator
+
+``` console
+npx react-native run-android
+```
+
+## Running on iOS Simulator
+
+``` console
+npx react-native run-ios
+```
+
+
 # React Native Project Structure
 
 ## Folder structure
